@@ -18,7 +18,7 @@ To clone repository:
 Workflow:
 	edit
 	git commit -a -m "message"
-	git push --al
+	git push --all
 	git pull
 
 To get last revision commited:
