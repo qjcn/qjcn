@@ -1,0 +1,19 @@
+#!/bin/bash
+
+for f in *.cpp
+do
+   echo $f
+   diff $f ../qjcn2/$f
+done
+
+for f in *.h
+do
+   echo $f
+   diff $f ../qjcn2/$f
+done
+
+for f in *.ui
+do
+   echo $f
+   diff $f ../qjcn2/$f
+done

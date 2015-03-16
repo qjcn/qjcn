@@ -1,0 +1,50 @@
+<!DOCTYPE RCC><RCC version="1.0">
+  <qresource>
+
+     <file>images/db-add.png</file>
+     <file>images/db-rmv.png</file>
+     <file>images/db-search.png</file>
+     <file>images/pdf.png</file>
+     <file>images/xlt.png</file>
+     <file>images/apply.png</file>
+     <file>images/reset.png</file>
+     <file>images/filter.png</file>
+     <file>images/printer.png</file>
+     <file>images/next.png</file>
+     <file>images/prev.png</file>
+     <file>images/setup.png</file>
+     <file>images/plus.png</file>
+     <file>images/minus.png</file>
+     <file>images/cancel.png</file>
+     <file>images/rev.png</file>
+     <file>images/may9.png</file>
+     <file>images/may9th.png</file>
+     <file>images/8.png</file>
+     <file>images/Phone.png</file>
+     <file>images/v-rom.png</file>
+     <file>images/fwa.png</file>
+     <file>images/bwa.png</file>
+     <file>images/globe-icon.png</file>
+
+     <file>ted_images/editcopy.png</file>
+     <file>ted_images/editcut.png</file>
+     <file>ted_images/editpaste.png</file>
+     <file>ted_images/editredo.png</file>
+     <file>ted_images/editundo.png</file>
+     <file>ted_images/exportpdf.png</file>
+     <file>ted_images/filenew.png</file>
+     <file>ted_images/fileopen.png</file>
+     <file>ted_images/fileprint.png</file>
+     <file>ted_images/filesave.png</file>
+     <file>ted_images/textbold.png</file>
+     <file>ted_images/textcenter.png</file>
+     <file>ted_images/textitalic.png</file>
+     <file>ted_images/textjustify.png</file>
+     <file>ted_images/textleft.png</file>
+     <file>ted_images/textright.png</file>
+     <file>ted_images/textunder.png</file>
+     <file>ted_images/zoomin.png</file>
+     <file>ted_images/zoomout.png</file>	 
+
+  </qresource>
+</RCC>
