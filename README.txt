@@ -20,6 +20,8 @@ Workflow:
 	git commit -a -m "message"
 	git push --al
 
+To get last revision commited:
+	git rev-list --count HEAD
 --------------------------------------------------------
 
 qjcn depends on qt-4.8.x
