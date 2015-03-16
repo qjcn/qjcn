@@ -13,12 +13,12 @@ else
 	JCNOS=JCNOS_WIN
 endif
 
-DEFINES=-DJCN_BUILD_DATE=$(shell date +%F.%T) -DJCN_SVN_TAG="$(shell svn info | grep "Revision:")" -D$(JCNOS)
+DEFINES=-DJCN_BUILD_DATE=$(shell date +%F.%T) -DJCN_REV_TAG="$(shell git rev-list --count HEAD)" -D$(JCNOS)
 
 INCLUDES=\
 	-I./ \
 	-I$(QTDIR)/include -I$(QTDIR)/include/QtCore
-	
+
 
 ifeq ($(B_OS),Linux)
 	ifeq ($(B_MARCH),x86_64)
@@ -84,7 +84,7 @@ DBTOOL_OBJECTS= \
 
 all:	$(JCNEXE)
 
-	
+
 $(JCNEXE): $(JCN_UIS) $(JCN_MOCS) $(JCN_RCC) $(JCN_OBJECTS)
 	$(CC) $(JCN_OBJECTS) $(LDFLAGS) $(LIBS) -o $@
 	strip -s $(JCNEXE)

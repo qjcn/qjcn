@@ -35,8 +35,8 @@
 #define JCN_BUILD_DATE
 #endif
 
-#ifndef JCN_SVN_TAG
-#define JCN_SVN_TAG
+#ifndef JCN_REV_TAG
+#define JCN_REV_TAG
 #endif
 
 
@@ -69,29 +69,29 @@ public:
     void 		load_jcn_strings(const QByteArray & fname = jcn_str_fname_def);
 
 	void		dbglog(const QString & s, int lev=0);
-	
+
 	void		check_data();
 	void		create_ui();
 	void		load_data();
-			
+
 	void		check_sql_db(const QByteArray & fname);
 	void		createCtxMenu();
-	
+
 	void		create_jcn_db_view();
 	void		create_find_view();
-    void		load_jcn_db(const QByteArray & rootname = jcn_db_fname_root_def, 
+    void		load_jcn_db(const QByteArray & rootname = jcn_db_fname_root_def,
 							bool force=false);
 
 	bool		isLineValid(QByteArray & line);
-		
+
 	void		add_to_db();
 	int			createMatchMask();
 	QByteArray	createExpressMatchFilter(JcnModel * mdl, const QByteArray & flag);
 
-		
+
 public slots:
   	void		tab_selected(QString s);
-	
+
 	// translate tab
 	void		translate_text_changed();
   	void		translate_clicked();
@@ -112,9 +112,9 @@ public slots:
 	void		expFilter_textChanged(const QString & str);
 	void		applyFilterDb_clicked();
 	void		resetFilterDb_clicked();
-	
+
 	// find tab
-	void		find_calc_text_changed();	
+	void		find_calc_text_changed();
     void		find_calc_clicked(bool clearit = true);
     void		sql_find_calc_clicked(bool clearit = true);
 	QByteArray	build_sql_query(JcnCalc & c);
@@ -124,7 +124,7 @@ public slots:
 	void		print_find_clicked();
 	void		rev_find_clicked();
 	void		roman_find_clicked();
-		
+
 	void		find_f_GB_clicked(bool f);
 	void		find_b_GB_clicked(bool f);
 	void 		find_fb_GB_clicked(bool f);
@@ -159,7 +159,7 @@ signals:
 protected:
     // virtual from QMainWindows
     void closeEvent(QCloseEvent * e);
-    
+
 public:
 	Ui::JcnForm 				_ui;
     QApplication *            	_qapp;
@@ -182,17 +182,17 @@ private:
 
 
 	bool						_revMode;
-	
+
 	JcnModel *					_findModel1_rev;
 	JcnModel *					_findModel2_rev;
-	
+
 	QMenu 						_dbCtxMenu;
 	QMenu 						_findCtxMenu;
 	QMenu 						_fullMatchCtxMenu;
 
 public:
 	static bool	sqlFile;
-	
+
 	QSqlDatabase 				_db;
 	QFile 						log_file;
 };

@@ -15,7 +15,7 @@
 	#include <QtWidgets/QMessageBox>
 	#include <QtWidgets/QScrollBar>
 	#include <QtWidgets/QProgressDialog>
-	#include <QtWidgets/QTextBrowser>	
+	#include <QtWidgets/QTextBrowser>
 #else
 	#include <QtGui/QtGui>
 	#include <QtGui/QMessageBox>
@@ -59,7 +59,7 @@ Jcn::Jcn(QApplication * a, QMainWindow * parent):
 	check_data();
 
 	create_ui();
-	
+
 	load_data();
 
 }
@@ -73,7 +73,7 @@ Jcn::create_ui()
     _ui.setupUi(this);
 
 	JCNLOG("create menus");
-	
+
 	// menu file
     connect(_ui.actionCreateDb, SIGNAL(triggered()), this, SLOT(createDb()));
     connect(_ui.actionOpenDb, SIGNAL(triggered()), this, SLOT(openDb()));
@@ -88,17 +88,17 @@ Jcn::create_ui()
 
 	// menu settings
 //    connect(_ui.actionCustomColumns, SIGNAL(triggered()), this, SLOT(custCol()));
-	
+
 	// menu help
     connect(_ui.actionAbout, SIGNAL(triggered()), this, SLOT(aboutApp()));
     connect(_ui.actionNotes, SIGNAL(triggered()), this, SLOT(notesApp()));
-   	   
+
 	// for clean exit
     connect(_qapp, SIGNAL(lastWindowClosed()), this, SLOT(exitApp()));
 
 	// main tab
     connect( _ui.main_TW, SIGNAL(selected(QString)), this, SLOT(tab_selected(QString)) );
-	
+
 
 	JCNLOG("create tabs");
 
@@ -109,7 +109,7 @@ Jcn::create_ui()
 	_ui.jcnText_LE->horizontalScrollBar()->hide();
     connect( _ui.calc_PB, SIGNAL(clicked()), this, SLOT(translate_clicked()) );
 	//connect( _ui.jcnText_LE, SIGNAL(returnPressed()), this,  SLOT(translate_clicked()));
-	connect( _ui.jcnText_LE, SIGNAL(textChanged()), this,  SLOT(translate_text_changed()));	
+	connect( _ui.jcnText_LE, SIGNAL(textChanged()), this,  SLOT(translate_text_changed()));
     connect( _ui.addToDb_PB, SIGNAL(clicked()), this, SLOT(add_to_db_clicked()) );
     connect( _ui.find_PB, SIGNAL(clicked()), this, SLOT(find_clicked()) );
     connect( _ui.printResult_PB, SIGNAL(clicked()), this, SLOT(print_result_clicked()) );
@@ -117,12 +117,12 @@ Jcn::create_ui()
    	connect( _ui.showFwa_TB, SIGNAL(clicked()), this, SLOT(translate_clicked()) );
    	connect( _ui.showBwa_TB, SIGNAL(clicked()), this, SLOT(translate_clicked()) );
    	connect( _ui.useRoman_TB, SIGNAL(clicked()), this, SLOT(translate_clicked()) );
-		   
 
-	//====================================================================	
+
+	//====================================================================
 	// databse tab
 	//====================================================================
-	connect( _ui.addNewToDb_PB, SIGNAL(clicked()), this, SLOT(add_new_to_db_clicked()) );    
+	connect( _ui.addNewToDb_PB, SIGNAL(clicked()), this, SLOT(add_new_to_db_clicked()) );
     connect( _ui.rmvFromDb_PB, SIGNAL(clicked()), this, SLOT(rmv_from_db_clicked()) );
     connect( _ui.findDb_PB, SIGNAL(clicked()), this, SLOT(find_db_clicked()) );
     connect( _ui.printDb_PB, SIGNAL(clicked()), this, SLOT(print_db_clicked()) );
@@ -134,13 +134,13 @@ Jcn::create_ui()
 	// db filters
 	connect( _ui.textFilterDb_LE, SIGNAL(textEdited(const QString&)), this,  SLOT(textFilter_textChanged(const QString&)));
 	connect( _ui.textFilterDb_LE, SIGNAL(returnPressed()), this,  SLOT(applyFilterDb_clicked()));
-	
+
 	connect( _ui.numFilterDb_LE, SIGNAL(textEdited(const QString&)), this,  SLOT(numFilter_textChanged(const QString&)));
 	connect( _ui.numFilterDb_LE, SIGNAL(returnPressed()), this,  SLOT(applyFilterDb_clicked()));
-	
+
 	connect( _ui.sqlText_LE, SIGNAL(textEdited(const QString&)), this,  SLOT(expFilter_textChanged(const QString&)));
 	connect( _ui.sqlText_LE, SIGNAL(returnPressed()), this,  SLOT(applyFilterDb_clicked()));
-	
+
 	connect( _ui.applyFilterDb_PB, SIGNAL(clicked()), this, SLOT(applyFilterDb_clicked()) );
 	connect( _ui.resetFilterDb_PB, SIGNAL(clicked()), this, SLOT(resetFilterDb_clicked()) );
 
@@ -185,7 +185,7 @@ Jcn::create_ui()
     connect( _ui.printFind_PB, SIGNAL(clicked()), this, SLOT(print_find_clicked()) );
     connect( _ui.revFind_PB, SIGNAL(clicked()), this, SLOT(rev_find_clicked()) );
     connect( _ui.romanFind_PB, SIGNAL(clicked()), this, SLOT(roman_find_clicked()) );
-		
+
 	connect (_ui.f_GB, SIGNAL(clicked(bool)), this, SLOT(find_f_GB_clicked(bool) ));
 	connect (_ui.b_GB, SIGNAL(clicked(bool)), this, SLOT(find_b_GB_clicked(bool) ));
 	connect (_ui.fb_GB, SIGNAL(clicked(bool)), this, SLOT(find_fb_GB_clicked(bool) ));
@@ -194,7 +194,7 @@ Jcn::create_ui()
     connect( _ui.op2_TB, SIGNAL(clicked()), this, SLOT(find_op2_clicked()) );
 
 
-				
+
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	//_ui.tabWidget->setTabText(3,""); // flex
 	//_ui.tabWidget->setTabEnabled(3,false); // flex
@@ -202,13 +202,13 @@ Jcn::create_ui()
 	_ui.main_TW->setCurrentIndex(0); // set to translate tab at start
 
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-//	_ui.f_GB->hide();	// 
-//	_ui.b_GB->hide();	// 
-//	_ui.fb_GB->hide();	// 
-			
+//	_ui.f_GB->hide();	//
+//	_ui.b_GB->hide();	//
+//	_ui.fb_GB->hide();	//
+
 	_ui.findChoice_Frame->hide();	// make search choice invisible
 	_ui.filter_Frame->hide();		// make filter options invisible
-		
+
 //	_ui.addNewToDb_PB->setDisabled(true);
 //	_ui.rmvFromDb_PB->setDisabled(true);
 
@@ -218,14 +218,14 @@ void
 Jcn::load_data()
 {
 	JCNLOG("start load_data");
-		
-	load_jcn_strings();	
+
+	load_jcn_strings();
 
 	create_jcn_db_view();
 	create_find_view();
 
 	createCtxMenu();
-		
+
 	load_jcn_db();
 
 	JCNLOG("finish load_data");
@@ -255,7 +255,7 @@ Jcn::check_data()
 QString logText;
 
 	JCNLOG("start - check_data");
-	
+
 #ifdef Q_WS_WIN  // if we run under windows
 	_jcnRootDir = jcn_dir_win_def;
 #else // unix
@@ -264,7 +264,7 @@ QString logText;
 	const char * homedir = pw->pw_dir;
 	_jcnRootDir = homedir;
 	_jcnRootDir += jcn_dir_unix_def;
-#endif	
+#endif
 
 	JCNLOG(" checking path: " + _jcnRootDir);
 
@@ -294,7 +294,7 @@ QString logText;
 	log_file.setFileName(_jcnRootDir  + "/" + jcn_log_fname);
 	if (! log_file.open(QIODevice::ReadWrite | QIODevice::Text | QIODevice::Truncate) )
 	{
-		logText = " -- can't create log file: " + _jcnRootDir  + "/" + jcn_log_fname;	
+		logText = " -- can't create log file: " + _jcnRootDir  + "/" + jcn_log_fname;
 		JCNLOG(logText);
 
 		QMessageBox msgBox;
@@ -302,8 +302,8 @@ QString logText;
 		msgBox.exec();
 		exit(-1);
 	}
-	
-	
+
+
 	//------------------------------------------------------------------------
 	// check jcn string question file - if does not exist create initial one
 	//------------------------------------------------------------------------
@@ -316,7 +316,7 @@ QString logText;
 		// create default jcn_strings.txt
    		if(! q_file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append))
    		{
-			logText = " -- can't create file: " + _jcnRootDir  + "/" + jcn_str_fname_def;				
+			logText = " -- can't create file: " + _jcnRootDir  + "/" + jcn_str_fname_def;
 			JCNLOG(logText);
 
    			QMessageBox msgBox;
@@ -335,14 +335,14 @@ QString logText;
 						  );
 		JCNLOG(logText);
 		msgBox.exec();
-		
+
 		int count=0;
 		while (jcn_strings_data[count])
 		{
 			QByteArray test = jcn_strings_data[count];
 			if (test == ".") // reached end
 				break;
-			
+
 			q_file.write(QByteArray(jcn_strings_data[count]) + "\r\n"); // use CR and NL
 //			JCNLOG("Add def question: " + QByteArray(jcn_strings_data[count]));
 			count++;
@@ -364,7 +364,7 @@ QString logText;
 		QFile s_file(_jcnRootDir  + "/" + jcn_db_fname_root_def+".txt");
    		if(! s_file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append))
    		{
-			logText = " -- can't create file: " + _jcnRootDir  + "/" + jcn_db_fname_root_def+".txt";						
+			logText = " -- can't create file: " + _jcnRootDir  + "/" + jcn_db_fname_root_def+".txt";
 			JCNLOG(logText);
 
    			QMessageBox msgBox;
@@ -390,7 +390,7 @@ QString logText;
 			QByteArray test = jcn_db_data[count];
 			if (test == ".") // reached end
 				break;
-		
+
 			s_file.write(QByteArray(jcn_db_data[count]) + "\r\n"); // use CR and NL
 //			JCNLOG("Add def data: " + QByteArray(jcn_db_data[count]));
 			count++;
@@ -408,9 +408,9 @@ void
 Jcn::check_sql_db(const QByteArray & fname)
 {
 	QString logStr;
-	
+
 	JCNLOG("start - check_sql_db: " + fname);
-	
+
 	JCNLOG("Check SQLDB: ");
 
 /*
@@ -427,7 +427,7 @@ Jcn::check_sql_db(const QByteArray & fname)
 		exit(-1);
 		return;
 	}
-*/			
+*/
 
 
 	JCNLOG("Open SQLDB: " + fname);
@@ -450,7 +450,7 @@ Jcn::check_sql_db(const QByteArray & fname)
 
 	// load in database from text file
 	// in case where we use disk database it will need to be done only in case or record number mismatch
-	
+
 	JCNLOG("Testing SQLDB and TextDB.");
 
 	QString logText;
@@ -507,7 +507,7 @@ Jcn::check_sql_db(const QByteArray & fname)
 		goto DB_CREATE;
 	}
 
-	while (qry.next()) 
+	while (qry.next())
 	{
         countRec = qry.value(0).toInt();
     }
@@ -521,10 +521,10 @@ Jcn::check_sql_db(const QByteArray & fname)
 	}
 
 
-	// --------------------------  
+	// --------------------------
 	// check version
-	// --------------------------  
-	
+	// --------------------------
+
 	logStr = "Get version number";
 	JCNLOG(logStr);
 
@@ -540,7 +540,7 @@ Jcn::check_sql_db(const QByteArray & fname)
 	}
 
 
-	while (qry.next()) 
+	while (qry.next())
 	{
         qryVersion = qry.value(0).toString().toLatin1();
     }
@@ -558,18 +558,18 @@ Jcn::check_sql_db(const QByteArray & fname)
 
 
 	goto DB_GOOD;
-		
+
 
 	DB_CREATE:
-	{		
+	{
 		logStr = "Creating new SQLDB: ";
 		JCNLOG(logStr);
 
 		// drop table just in case - if does not exist its ok
 		qry  = _db.exec("drop table jcn_table"); // just in case
 		qry  = _db.exec("drop table jcn_version"); // just in case
-		
-		QByteArray sql;	
+
+		QByteArray sql;
 
 		sql = JcnCalc::toSqlCreate();
 		logStr = "Creating schema: " + sql;
@@ -641,9 +641,9 @@ Jcn::check_sql_db(const QByteArray & fname)
 
 
 	DB_RELOAD:
-	{		
+	{
 		bool dataValid = true;
-		
+
 		QProgressDialog progress("Re-creating SQL DB ...", "", 0, count_lines, this);
 
 		int count = 0;
@@ -713,7 +713,7 @@ Jcn::check_sql_db(const QByteArray & fname)
 
 			return;
 		}
-		
+
 		if (!dataValid)
 		{
 			QMessageBox msgBox;
@@ -735,7 +735,7 @@ Jcn::check_sql_db(const QByteArray & fname)
 // -------------------------------------------------------------
 bool
 Jcn::isLineValid(QByteArray & line)
-{	
+{
 	line.replace('"',' ');  // make sure we do not have double quotes embedded
 	line.replace('\'',' ');  // make sure we do not have single quotes embedded
 
@@ -762,7 +762,7 @@ Jcn::isLineValid(QByteArray & line)
 			(ch == '/')						// backslash is OK
 			)
 		{
-			
+
 		}
 		else // no good
 		{
@@ -772,11 +772,11 @@ Jcn::isLineValid(QByteArray & line)
 			break;
 		}
 	}
-	
+
 	return ret;
 }
 // -------------------------------------------------------------
-void 
+void
 Jcn::createCtxMenu()
 {
 	QAction * a1 = new QAction("Find/Compare", this);
@@ -786,8 +786,8 @@ Jcn::createCtxMenu()
 	connect(this, SIGNAL(sig_dbFindCmp(void)), this, SLOT(find_db_clicked()));
 
 	connect( _ui.db_View,
-			SIGNAL(customContextMenuRequested (const QPoint &)), 
-			this, 
+			SIGNAL(customContextMenuRequested (const QPoint &)),
+			this,
 			SLOT(dbCtxMenuEvent(const QPoint &))
 			);
 
@@ -797,10 +797,10 @@ Jcn::createCtxMenu()
 	_ui.find_View2->setContextMenuPolicy(Qt::CustomContextMenu);
 
 	connect(this, SIGNAL(sig_findFindCmp(void)), this, SLOT(find_find_clicked()));
-	
+
 	connect( _ui.find_View2,
-			SIGNAL(customContextMenuRequested (const QPoint &)), 
-			this, 
+			SIGNAL(customContextMenuRequested (const QPoint &)),
+			this,
 			SLOT(findCtxMenuEvent(const QPoint &))
 			);
 
@@ -809,22 +809,22 @@ Jcn::createCtxMenu()
 	_ui.fullMatch_TW->setContextMenuPolicy(Qt::CustomContextMenu);
 
 	connect(this, SIGNAL(sig_findFindCmp(void)), this, SLOT(find_full_clicked()));
-	
+
 	connect( _ui.fullMatch_TW,
-			SIGNAL(customContextMenuRequested (const QPoint &)), 
-			this, 
+			SIGNAL(customContextMenuRequested (const QPoint &)),
+			this,
 			SLOT(findCtxMenuEvent(const QPoint &))
 			);
 }
 // -------------------------------------------------------------
-void 
+void
 Jcn::dbCtxMenuEvent(const QPoint & pos)
 {
 	_dbCtxMenu.exec(QCursor::pos());
 	emit sig_dbFindCmp();
 }
 // -------------------------------------------------------------
-void 
+void
 Jcn::findCtxMenuEvent(const QPoint & pos)
 {
 	_findCtxMenu.exec(QCursor::pos());
@@ -835,7 +835,7 @@ void
 Jcn::load_jcn_strings(const QByteArray & fname)
 {
 	JCNLOG("start - load_jcn_strings()");
-	
+
 	_jcnTxtStrFn = _jcnRootDir + "/" + fname;
 	QString logText;
 
@@ -858,7 +858,7 @@ Jcn::load_jcn_strings(const QByteArray & fname)
 	{
 		line = file.readLine().simplified();
 		if (line[0] == '#' || line.length() == 0)	continue;
-		
+
 		// check line for invalid chars
 		if (! isLineValid(line) )
 		{
@@ -868,7 +868,7 @@ Jcn::load_jcn_strings(const QByteArray & fname)
 		count_lines++;
 	}
 
-	file.reset();	
+	file.reset();
 	QProgressDialog progress("Loading JCN Strings...", "Ok", 0, count_lines, this);
 	int count = 0;
 	QList<QListWidgetItem *> fi_list;
@@ -889,12 +889,12 @@ Jcn::load_jcn_strings(const QByteArray & fname)
 		if (fi_list.size()==0)
 			_ui.jcnStr_LIST->addItem(line.toUpper());
 
-    	progress.setValue(count++);			
+    	progress.setValue(count++);
         _qapp->processEvents();
 	}
-	
+
 	// force it to blank
-	_ui.jcnStr_LIST->setCurrentRow(0);	
+	_ui.jcnStr_LIST->setCurrentRow(0);
 
 	JCNLOG("finish - load_jcn_strings()");
 }
@@ -903,7 +903,7 @@ void
 Jcn::create_jcn_db_view()
 {
 	JCNLOG("start - create_jcn_db_view()");
-		
+
 	for (int i=0; i< JcnDD_Last; ++i)
 	{
 		_ui.db_View->setColumnWidth(i, JcnDD[i].w);
@@ -926,7 +926,7 @@ void
 Jcn::create_find_view()
 {
 	JCNLOG("start - create_find_view()");
-	
+
 	_findModel1 = new JcnModel(_ui.find_View1, this);
 	_ui.find_View1->setModel(_findModel1);
 	_ui.find_View1->setSortingEnabled(false);
@@ -939,7 +939,7 @@ Jcn::create_find_view()
 
 	_findModel1_rev = new JcnModel(_ui.find_View1, this);
 
-		
+
 	_findModel2 = new JcnModel(_ui.find_View2, this);
 	_ui.find_View2->setModel(_findModel2);
 
@@ -962,16 +962,16 @@ Jcn::create_find_view()
 // --------------------------------------------------------------------
 void
 Jcn::load_jcn_db(
-					const QByteArray & rootname, 
+					const QByteArray & rootname,
 					bool force
 				)
 {
 	_jcnTxtDbFn = rootname + ".txt";
 	_jcnSqlDbFn = rootname + ".sql";
 	_jcnColDbFn = rootname + ".col";
-		
+
 	JCNLOG("start - load_jcn_db(fname): txt=" + _jcnTxtDbFn + " sql=" + _jcnSqlDbFn);
-	
+
 	QString logText;
 
 	if (! force) // normaly we prepend root path
@@ -1029,7 +1029,7 @@ Jcn::load_jcn_db(
 	}
 
 	int countRec;
-	while (qry.next()) 
+	while (qry.next())
 	{
        	countRec = qry.value(0).toInt();
 		if (jcndbg)
@@ -1046,18 +1046,18 @@ Jcn::load_jcn_db(
 		_sqlDbModel = new JcnSqlModel(_ui.db_View, this);
 
 	_sqlDbModel->load();
-	
+
 	JCNLOG("finish - load_jcn_db(): ");
 }
 // --------------------------------------------------------------------
-void 
+void
 Jcn::closeEvent(QCloseEvent * e)
 {
     exitApp();
 }
 
 // ------------------------------------------------------------------
-void 
+void
 Jcn::tab_selected(QString s)
 {
 	if (jcndbg > 10)
@@ -1070,7 +1070,7 @@ Jcn::tab_selected(QString s)
 // ------------------------------------------------------------------
 // file menu
 // ------------------------------------------------------------------
-void 
+void
 Jcn::createDb()
 {
 	QString openfn = QFileDialog::getSaveFileName(this,
@@ -1083,16 +1083,16 @@ Jcn::createDb()
 		QMessageBox msgBox;
 		msgBox.setText("Can't create file: " + openfn);
 		msgBox.exec();
-			
+
 		return;
 	}
 
 	load_jcn_db(openfn.toLatin1(), true);
-	
-	return;			
+
+	return;
 }
 // ------------------------------------------------------------------
-void 
+void
 Jcn::openDb()
 {
 	QString openfn = QFileDialog::getOpenFileName(this,
@@ -1100,11 +1100,11 @@ Jcn::openDb()
 	if (openfn=="") return;
 
 	load_jcn_db(openfn.toLatin1(), true);
-	
-	return;			
+
+	return;
 }
 // ------------------------------------------------------------------
-void 
+void
 Jcn::importDb()
 {
 	QString importfn = QFileDialog::getOpenFileName(this,
@@ -1138,7 +1138,7 @@ Jcn::importDb()
 	_ui.db_View->setModel(NULL); // disable it for perf reason
 
 	impfile.reset();
-	
+
 	QString backfn = _jcnTxtDbFn+".bak."+QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
 	if ( ! QFile::copy (_jcnTxtDbFn, backfn) )
 	{
@@ -1157,7 +1157,7 @@ Jcn::importDb()
  		msgBox.exec();
 		return;
 	}
-			
+
 	QProgressDialog progress("Importing Database...", "Ok", 0, count_lines, this);
 	int count = 0;
 	while( !impfile.atEnd() )
@@ -1180,30 +1180,30 @@ Jcn::importDb()
 		}
 */
     	progress.setValue(count++);
-        _qapp->processEvents();		
+        _qapp->processEvents();
 	}
 
 //@@@	_ui.db_View->setModel(_dbModel); // reenable it
 //@@@	_dbModel->setHeaders();
-	
+
 	impfile.close();
 	dbfile.close();
 
 	QMessageBox msgBox;
  	msgBox.setText("Import is completed: Restart QJcn");
- 	msgBox.exec();	
+ 	msgBox.exec();
     _qapp->processEvents();
-#ifdef Q_WS_WIN  // if we run under windows    
+#ifdef Q_WS_WIN  // if we run under windows
 	//Sleep(5);
 #else
   sleep(5);
 #endif
 	exit(0);
-	
-	return;			
+
+	return;
 }
 // ------------------------------------------------------------------
-void 
+void
 Jcn::exportDb()
 {
 	QString expfn = _jcnTxtDbFn+"."+QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
@@ -1219,11 +1219,11 @@ Jcn::exportDb()
 		QMessageBox msgBox;
  		msgBox.setText("Can't export to file: " + expfn);
  		msgBox.exec();
-		return;		
+		return;
 	}
 }
 // ------------------------------------------------------------------
-void 
+void
 Jcn::editDb()
 {
 	TextEdit *  ted = new TextEdit(this);
@@ -1232,11 +1232,11 @@ Jcn::editDb()
 	// get checksum of this file
 	FileChkSum fcs(_jcnTxtDbFn);
 	unsigned long long csm1 = fcs.calc();
-	
+
 	ted->load(_jcnTxtDbFn);
 
     ted->show();
-	
+
 	// while we are editing file
 	while ( ted->isVisible() )
 	{
@@ -1256,7 +1256,7 @@ Jcn::editDb()
 				  << " csm1=" << csm1 << std::endl
 				  << " csm2=" << csm2
 				<< std::endl;
-		
+
 		std::cout << "Rebuild database" << std::endl;
 
 
@@ -1274,7 +1274,7 @@ Jcn::editDb()
 		}
 
 		_db = QSqlDatabase::addDatabase("QSQLITE");
-	
+
 		load_jcn_db();
 	}
 	else
@@ -1283,7 +1283,7 @@ Jcn::editDb()
 	}
 }
 // ------------------------------------------------------------------
-void 
+void
 Jcn::exitApp()
 {
     std::cout << "Exit." << std::endl;
@@ -1298,7 +1298,7 @@ Jcn::exitApp()
 	generates a set of entries based on what is jcn_strings file and entered data
 */
 
-void 
+void
 Jcn::generate()
 {
 	if (jcndbg)
@@ -1310,10 +1310,10 @@ Jcn::generate()
 	QByteArray workStr;
 	QList<QByteArray> qbal;
 
-	if ( _ui.main_TW->currentIndex() == 0) // translate		
+	if ( _ui.main_TW->currentIndex() == 0) // translate
 	{
 		workStr = _ui.jcnText_LE->toPlainText().toLatin1().simplified().toUpper();
-		if (workStr.length() == 0)	
+		if (workStr.length() == 0)
 			return;
 
 		qbal.append(workStr);
@@ -1323,22 +1323,22 @@ Jcn::generate()
 	{
 		JcnSqlModel * m =	(JcnSqlModel*)_ui.db_View->model();
 		QList<QModelIndex> list = _ui.db_View->selectionModel()->selectedRows(0);
-		if (list.size() == 0) 
+		if (list.size() == 0)
 		{
 			return; // nothing selected
 		}
-	
+
 		// only chose one entry in case it is a multi selection
 		// safer this way
 		for (int j=0; j< list.size(); ++j)
-		{		
+		{
 			int itemRow = list.at(j).row();
 			QVariant var = m->data(m->index(itemRow, 0, QModelIndex()));
 
 			// extract text from this entry, clean it up and convert
 			workStr = var.toString().toLatin1().simplified().toUpper();
 
-			if (workStr.length() != 0)	
+			if (workStr.length() != 0)
 			{
 				qbal.append(workStr);
 			}
@@ -1348,8 +1348,8 @@ Jcn::generate()
 	{
 		return;
 	}
-	
-	
+
+
    	QFile file(_jcnTxtDbFn);
    	if(! file.open(QIODevice::ReadWrite | QIODevice::Text | QIODevice::Append))
    	{
@@ -1388,9 +1388,9 @@ Jcn::generate()
 			}
 			else // no error - add to text file as well
 			{
-				file.write("\r\n" + calc.text() + "\r\n"); // use CR and NL			
+				file.write("\r\n" + calc.text() + "\r\n"); // use CR and NL
 			}
-			
+
 			count++;
 		    progress.setValue(count);
     	    _qapp->processEvents();
@@ -1402,7 +1402,7 @@ DONE_GEN:
 
 	// reload db
 	_sqlDbModel->load();
-			
+
 	file.close();
 }
 
@@ -1413,16 +1413,16 @@ DONE_GEN:
 */
 
 
-void 
+void
 Jcn::fullMatches()
 {
 	_ui.main_TW->setCurrentIndex(3);
-	
+
 	if (jcndbg)
 		std::cout << "fullMatches" << std::endl;
 
 	_ui.fullMatch_TW->clear();
-	
+
 	QByteArray rangeLimitSql = "";
 	if ( _ui.rl_GB->isChecked() )
 	{
@@ -1433,7 +1433,7 @@ Jcn::fullMatches()
 		t = _ui.rl_f_hv_2_LE->text().simplified().toInt();
 
 		if ( f > 0 && t >= f)
-		{			
+		{
 			rangeLimitSql = " where ( f_hv between " + _ui.rl_f_hv_1_LE->text().toLatin1() + " and " + _ui.rl_f_hv_2_LE->text().toLatin1() + ") ";
 		}
 
@@ -1472,7 +1472,7 @@ Jcn::fullMatches()
 
 	QSqlQuery countQuery("SELECT count(*) from jcn_table " + rangeLimitSql);
 	int countRec;
-	while (countQuery.next()) 
+	while (countQuery.next())
 	{
          countRec = countQuery.value(0).toInt();
 		 std::cout << "countRec=" << countRec << std::endl;
@@ -1544,26 +1544,26 @@ Jcn::fullMatches()
 			parent->setText(1, QByteArray::number(chld_count) );
 
 		}
-//			std::cout << "   2 Btm Level: " << ts_hmsu() << std::endl;			
+//			std::cout << "   2 Btm Level: " << ts_hmsu() << std::endl;
 	}
 }
 
 // --------------------------------------------------------------------
 // help menu
 // --------------------------------------------------------------------
-void 
+void
 Jcn::aboutApp()
 {
     QString msg;
-	msg = "This is <b>JCN Tool 2.1</b>, " + 
+	msg = "This is <b>JCN Tool 2.1</b>, " +
 		QByteArray(xstr(JCN_BUILD_DATE)) + "<br>" +
-		" svn="+QByteArray(xstr(JCN_SVN_TAG)) + "<br>";
+		" revision="+QByteArray(xstr(JCN_REV_TAG)) + "<br>";
 	msg += "Based on research by Sheree Rainbolt-Kren<br>";
 	msg += "Written by Felix Singer";
     QMessageBox::about( this, "About", msg);
 }
 // --------------------------------------------------------------------
-void 
+void
 Jcn::notesApp()
 {
 	QTextBrowser * qtb = new QTextBrowser;
