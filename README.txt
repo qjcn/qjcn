@@ -1,9 +1,9 @@
-Initial creation of qjcn2 project in git
+Initial creation of qjcn project in git
 
-mkdir -p qjcn2
-cp -r qjcn2_clean/* qjcn2
+mkdir -p qjcn
+cp -r qjcn2_clean/* qjcn
 
-cd qjcn2
+cd qjcn
 git init
 git config user.email "qjcn@appqloud.com"
 git add *
@@ -13,40 +13,32 @@ git push -u origin master
 
 
 
-
-
-
-to checkout:
-
-# readonly checkout
-svn co http://jcn.googlecode.com/svn/trunk/qjcn2 qjcn2
-
-# commiting checkout
-svn co https://jcn.googlecode.com/svn/trunk/qjcn2 qjcn2 --username jcn@appqloud.com
+# clone repository
+git clone https://github.com/qjcn/qjcn.git
 
 ##############################################################################
 
-required for building:
-   qt-4.8.2
-   mingw gcc44
+qjcn depends on qt-4.8.x
+on Windows it needs: mingw (with gcc4.8+) and optional msys
 
-optional:
-   msys
+This release is built with qt-4.8.2
 
 Links for qt in mingw from nokia
   http://get.qt.nokia.com/qt/source/qt-everywhere-opensource-src-4.8.2.zip
   http://get.qt.nokia.com/misc/MinGW-gcc440_1.zip
 
+#############################################################
+Instrtuction for building qt on windows
 
 Install qt-4.8.2 into c:\qt\4.8.2
 Unzip mingw in c:\mingw
 
-
 Goto c:\qt\4.8.2
 
+optional:
 vi mkspec/win32-g++\qmake.conf
    line 26
    change QMAKE_CFLAGS_RELEASE=-03
 
 
-run: configure.exe -qt-libtiff -qt-libpng -qt-libmng -qt-libjpeg -qt-sql-sqlite -no-opengl -release -static 
+run: configure.exe -qt-libtiff -qt-libpng -qt-libmng -qt-libjpeg -qt-sql-sqlite -no-opengl -release -static
