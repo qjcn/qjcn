@@ -23,6 +23,9 @@ Workflow:
 To get last revision commited:
 	git rev-list --count HEAD
 
+Binary can be downloaded from here:
+  https://github.com/qjcn/qjcn/releases/download/12/qjcn.exe
+
 
 --------------------------------------------------------
 
