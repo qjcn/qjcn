@@ -15,6 +15,12 @@ Initial creation of qjcn project in git:
 To clone repository:
 	git clone https://github.com/qjcn/qjcn.git
 
+To bowse repository:
+	https://github.com/qjcn/qjcn
+
+To download binary:
+	https://github.com/qjcn/qjcn/releases/download/12/qjcn.exe
+
 Workflow:
 	edit
 	git commit -a -m "message"
@@ -24,8 +30,6 @@ Workflow:
 To get last revision commited:
 	git rev-list --count HEAD
 
-Binary can be downloaded from here:
-  https://github.com/qjcn/qjcn/releases/download/12/qjcn.exe
 
 
 --------------------------------------------------------
