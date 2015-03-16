@@ -1,34 +1,38 @@
 Initial creation of qjcn project in git
 
-mkdir -p qjcn
-cp -r qjcn2_clean/* qjcn
+	mkdir -p qjcn
+	cp -r qjcn_clean/* qjcn
 
-cd qjcn
-git init
-git config user.email "qjcn@appqloud.com"
-git add *
-git commit -m "first commit"
-git remote add origin https://github.com/qjcn/qjcn.git
-git push -u origin master
+	cd qjcn
+	git init
+	git config user.email "qjcn@appqloud.com"
+	git add *
+	git commit -m "first commit"
+	git remote add origin https://github.com/qjcn/qjcn.git
+	git push -u origin master
 
 
+To clone repository
+	git clone https://github.com/qjcn/qjcn.git
 
-# clone repository
-git clone https://github.com/qjcn/qjcn.git
 
-##############################################################################
+--------------------------------------------------------
 
 qjcn depends on qt-4.8.x
 on Windows it needs: mingw (with gcc4.8+) and optional msys
 
 This release is built with qt-4.8.2
 
-Links for qt in mingw from nokia
-  http://get.qt.nokia.com/qt/source/qt-everywhere-opensource-src-4.8.2.zip
-  http://get.qt.nokia.com/misc/MinGW-gcc440_1.zip
+Software Links
+	http://download.qt.io/archive/qt/4.8/4.8.2/qt-everywhere-opensource-src-4.8.2.tar.gz
+	http://download.qt.io/archive/qt/4.8/4.8.2/qt-win-opensource-4.8.2-mingw.exe
 
-#############################################################
-Instrtuction for building qt on windows
+	standalone mingw
+		http://sourceforge.net/projects/mingw/files/latest/download?source=files
+
+--------------------------------------------------------
+
+Instrtuction for building qt
 
 Install qt-4.8.2 into c:\qt\4.8.2
 Unzip mingw in c:\mingw
