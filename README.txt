@@ -1,14 +1,22 @@
-Initial creation of qjcn2 project in svn
+Initial creation of qjcn2 project in git
 
-mkdir -p qjcn2.svn
-cp -r qjcn2 qjcn2.svn
+mkdir -p qjcn2
+cp -r qjcn2_clean/* qjcn2
 
-cd qjcn2.svn
-svn import qjcn2 https://jcn.googlecode.com/svn/trunk/qjcn2 -m "init" --username jcn@appqloud.com
+cd qjcn2
+git init
+git config user.email "qjcn@appqloud.com"
+git add *
+git commit -m "first commit"
+git remote add origin https://github.com/qjcn/qjcn.git
+git push -u origin master
 
 
 
-to checkout crypt:
+
+
+
+to checkout:
 
 # readonly checkout
 svn co http://jcn.googlecode.com/svn/trunk/qjcn2 qjcn2
