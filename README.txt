@@ -1,4 +1,4 @@
-Initial creation of qjcn project in git
+Initial creation of qjcn project in git:
 
 	mkdir -p qjcn
 	cp -r qjcn_clean/* qjcn
@@ -12,9 +12,13 @@ Initial creation of qjcn project in git
 	git push -u origin master
 
 
-To clone repository
+To clone repository:
 	git clone https://github.com/qjcn/qjcn.git
 
+Workflow:
+	edit
+	git commit -a -m "message"
+	git push --al
 
 --------------------------------------------------------
 
