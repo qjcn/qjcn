@@ -23,7 +23,8 @@ Workflow:
 --------------------------------------------------------
 
 qjcn depends on qt-4.8.x
-on Windows it needs: mingw (with gcc4.8+) and optional msys
+
+on Windows it also needs: mingw (with gcc4.8+) and optional msys
 
 This release was built with qt-4.8.2
 
