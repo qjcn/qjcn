@@ -19,6 +19,7 @@ Workflow:
 	edit
 	git commit -a -m "message"
 	git push --al
+	git pull
 
 To get last revision commited:
 	git rev-list --count HEAD
