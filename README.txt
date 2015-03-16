@@ -21,7 +21,7 @@ To clone repository
 qjcn depends on qt-4.8.x
 on Windows it needs: mingw (with gcc4.8+) and optional msys
 
-This release is built with qt-4.8.2
+This release was built with qt-4.8.2
 
 Software Links
 	http://download.qt.io/archive/qt/4.8/4.8.2/qt-everywhere-opensource-src-4.8.2.tar.gz
